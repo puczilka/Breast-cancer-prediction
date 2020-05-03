@@ -3,7 +3,13 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
+from scipy.stats import pointbiserialr
+import itertools
 import sys
+
+# Function which returns rows where any column is null
+def nans(df):
+    return df[df.isnull().any(axis=1)]
 
 # Function to get all the prefixes from an array of cols, given suffixes
 # eg, in this case we have all columns ending in _mean, _worst or _se
