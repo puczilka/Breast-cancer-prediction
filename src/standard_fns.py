@@ -1,3 +1,10 @@
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+import sys
+
 # Function to get all the prefixes from an array of cols, given suffixes
 # eg, in this case we have all columns ending in _mean, _worst or _se
 # This function removes those and returns array with the actual features.
