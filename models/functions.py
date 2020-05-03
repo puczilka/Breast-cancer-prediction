@@ -2,9 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from scipy import stats
 import sklearn.cluster as clust
 from scipy.spatial.distance import cdist
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+from scipy.stats import pointbiserialr
 import os
 
 
@@ -132,3 +134,66 @@ def plot_performance(results):
     plt.show()
     return None
 
+def get_PBS_corr_from_cols(df,target_col,cont_cols,thresh = 0 ):
+    res = dict()
+    for col in cont_cols:
+        correlation, pval = pointbiserialr(df[target_col],df[col])
+        res[col] = correlation
+    inter = pd.Series(res, name='corr').reset_index()
+    inter['abs_corr'] = pd.DataFrame.abs(inter['corr'])
+    inter = inter[inter['abs_corr'] > thresh ]
+    fin_res = inter.sort_values('corr',ascending=False)
+    fin_res = fin_res.drop(columns = ['abs_corr'])
+    return(fin_res)
+
+
+def get_VIF_experimental(df,thresh=0.1):
+    dropped=True
+    while dropped:
+        variables = df.columns
+        dropped = False
+        r = [stats.linregress(df[variables].values, df.columns.get_loc(var)) for var in df.columns]
+        r_value = r.r_value
+        VIF = 1/(1-r_value)
+        
+    max_vif = max(VIF)
+    if max_vif > thresh:
+        maxloc = vif.index(max_vif)
+        print(f'Dropping {X.columns[maxloc]} with vif={max_vif}')
+        df = df.drop([X.columns.tolist()[maxloc]], axis=1)
+        dropped=True
+    return list(df)
+    
+
+def get_VIF_simple(df,cols):
+    proj0 = np.asarray(df[cols[0]])
+    proj1 = np.asarray(df[cols[1]])
+    slope, intercept, r_value, p_value, std_err = stats.linregress(proj0,proj1)
+    if(r_value==1):
+        VIF = 1
+    else:
+        VIF = 1/(1-r_value)
+    return(VIF)
+
+
+def get_VIF(df):
+    cols = df.columns
+    size = cols.size
+    mat = np.zeros((size,size))
+
+    for i in range(size):
+        for j in range(size):
+            #print([cols[i],cols[j]])
+            mat[i,j] = get_VIF_simple(df,np.asarray([cols[i],cols[j]]))
+    return mat
+
+def drop_multicollinear_features(thresh,df):
+    dropped = True    
+    while dropped:
+        dropped = False
+        VIFs = get_VIF(df)
+        maxval = np.amax(VIFs)
+        if maxval > thresh:
+            df = remove_max_VIF_col(VIFs,df,thresh)
+            dropped = True
+    return(df)
