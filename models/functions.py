@@ -96,7 +96,7 @@ def plot_performance(results):
     plt.ylabel("Score")
 
     ax = plt.gca()
-    ax.set_xlim(1, 10)
+    ax.set_xlim(1, 100)
     ax.set_ylim(0.73, 1)
     
     scoring = {'Accuracy' : make_scorer(accuracy_score), 'Precision': make_scorer(precision_score)}
