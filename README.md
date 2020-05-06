@@ -1,7 +1,11 @@
 breastcancerprediction
 ==============================
+CFG Data Science final project. Predicting breast cancer status from image data. Classification models used: logistic regression, decision tree, random forest, svm and Adaboost.
 
-CFG Data Science final project. Predicting breast cancer status from image data.
+The final dataset included 9 variables:
+
+Best recall and precision: logistic regression
+Best AUC: SVM
 
 Project Organization
 ------------
