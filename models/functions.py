@@ -187,6 +187,17 @@ def get_VIF(df):
             mat[i,j] = get_VIF_simple(df,np.asarray([cols[i],cols[j]]))
     return mat
 
+
+def remove_max_VIF_col(VIF,df,thresh):
+    maxval = np.amax(VIF)
+    if(maxval >= thresh):
+        loc = np.where(VIF == maxval)[0][1]
+        newdf = df.drop([df.columns.tolist()[loc]],axis=1)
+    else:
+        newdf = df
+    return(newdf)
+
+
 def drop_multicollinear_features(thresh,df):
     dropped = True    
     while dropped:
