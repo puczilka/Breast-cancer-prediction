@@ -51,8 +51,9 @@ We plotted the ROC curce to assess the performce of the models as seen below. Ar
 
 ![roc-curve](https://raw.githubusercontent.com/puczilka/Breast-cancer-prediction/master/reports/figures/roc-curve.png) 
 
-Highest recall, precision and F1-score: Logistic regression:    0.973719   0.973684   0.973621
-Best AUC: SVM 0.87, this means that the model will be able to distinguish the patients with heart disease and those who don’t 87% of the time.
+Highest recall, precision and F1-score: Logistic regression
+
+Best AUC: SVM 0.87, this means that the model will be able to distinguish the patients with breast cancer and those without 87% of the time.
 
 |Model|Precision|Recall|F-score|
 |-------------------|---------|-------|--------|
