@@ -1,7 +1,7 @@
 
 ==============================
 
-Breast Cancer Prediction 
+##Breast Cancer Prediction
 
 Breast cancer is one of the most common types of cancer in the UK. According to NHS, about 1 in 8 women are diagnosed with breast cancer during their lifetime, and early detection will significantly increase the chance of recovery.
 
@@ -20,36 +20,35 @@ Considering that each record in the data was already labelled with the diagnosis
 The data was split into training data (80% of the entire data set) and test data (20% of the entire data set).
 
 
-Logistic Regression
-
-" Logistic regression models the probability that a response falls into a specific category. Once trained we may use the confusion matrix to evaluate the classification. The four values are true positive (predicted yes and actually was yes), true negative (predict no and actually was no), false positive (predicted yes and actually was no) and false negative (predicted no and actually was yes)." (Keith Brooks, 2018)
-
-
-
 Confusion Matrix
 
-"A confusion matrix is a summary of prediction results on a classification problem. The number of correct and incorrect predictions are summarized with count values and broken down by each class. This is the key to the confusion matrix. The confusion matrix shows the ways in which your classification model is confused when it makes predictions. It gives us insight not only into the errors being made by a classifier but more importantly the types of errors that are being made." (GeeksforGeeks)
+A confusion matrix is a summary of prediction results on a classification problem. The number of correct and incorrect predictions are summarized with count values and broken down by each class. A confusion matrix helps us gain an insight into how correct our predictions were and how they hold up against the actual values. The four values are true positive (predicted yes and actually was yes), true negative (predict no and actually was no), false positive (predicted yes and actually was no) and false negative (predicted no and actually was yes).
 
+Confusion matrix for logistic regression:
 
 ![log-regression-confusion-matrix](https://raw.githubusercontent.com/puczilka/Breast-cancer-prediction/master/reports/figures/log-regression-confusion-matrix.png) 
 
 
-Accuracy & Precision
+Accuracy, precision, recall and F-1 score metrics were used to assess the performance of the models applied to the pre-processed breast cancer image data.
 
-"Accuracy and precision are two important factors to consider when taking data measurements. Both accuracy and precision reflect how close a measurement is to an actual value, but accuracy reflects how close a measurement is to a known or accepted value, while precision reflects how reproducible measurements are, even if they are far from the accepted value." ( Anne Marie Helmenstine, Ph.D., 2019)
+Accuracy and precision are two important factors to consider when taking data measurements. Both accuracy and precision reflect how close a measurement is to an actual value, but accuracy reflects how close a measurement is to a known or accepted value, while precision reflects how reproducible measurements are, even if they are far from the accepted value. 
 
+-Accuracy is the ratio of the total number of correct predictions and the total number of predictions.
+-Precision is the ratio between the True Positives and all the Positives. For our problem statement, that would be the measure of patients that we correctly identify having breast cancer out of all the patients actually having it.
+-Recall is the measure of our model correctly identifying True Positives. Thus, for all the patients who actually have breast cancer, recall tells us how many we correctly identified as having a cancer. 
+-F1-score is the Harmonic mean of the Precision and Recall.
 
-Receiver Operating Characteristic (ROC) curve
 
 The ROC curve is a graphical plot that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied.
 
-We plotted the ROC curce to assess the performce of our logistic regression model as seen below.
+We plotted the ROC curce to assess the performce of the models as seen below. Area under the curve (AUC) represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.
 
 
 ![roc-curve](https://raw.githubusercontent.com/puczilka/Breast-cancer-prediction/master/reports/figures/roc-curve.png) 
 
-Best recall and precision: logistic regression
-Best AUC: SVM
+Highest recall, precision and F1-score: Logistic regression:    0.973719   0.973684   0.973621
+Best AUC: SVM 0.87, this means that the model will be able to distinguish the patients with heart disease and those who don’t 87% of the time.
+
 
 Project Organization
 ------------
