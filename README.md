@@ -63,6 +63,10 @@ Best AUC: SVM 0.87, this means that the model will be able to distinguish the pa
 |SVM|0.956905|0.956140|0.955801|
 |Boosted Decision Tree|0.912281|0.912281|0.912281|
 
+### Conclusion:
+
+Logistic regression model applied to a dataset of 8 characteristics derived from a tumour image aid to reconfirm malignant diagnosis, adding evidence to doctors' diagnosis of cancer.
+
 
 Project Organization
 ------------
